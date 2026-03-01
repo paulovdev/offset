@@ -123,7 +123,7 @@ export const manifestoPhrases = [
 ];
 
 export const blockPhrases = [
-  `Offset® is a global strategic branding agency that works with innovative companies to turn brands into Ideas Worth Rallying Around®. `,
+  `Offset® is a global strategic branding agency that works with innovative companies to turn brands into Ideas Worth Rallying Around®.`,
   ``,
   `We work with founders, CEOs, and leadership teams to realize their most significant business opportunities. `,
   ``,
