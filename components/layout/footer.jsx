@@ -2,7 +2,6 @@ import { opacity, textSlide } from "@/animations/shared/global-anim";
 import { motion } from "motion/react";
 import { useInView } from "react-intersection-observer";
 import Button from "../ui/button";
-import ExportedImage from "next-image-export-optimizer";
 
 const navLinks = [
   { label: "Index", href: "/" },

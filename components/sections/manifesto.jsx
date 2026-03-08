@@ -1,3 +1,4 @@
+"use client";
 import { useInView } from "react-intersection-observer";
 import { textSlide } from "@/animations/shared/global-anim";
 import TextAnimated from "@/components/ui/text-animated";

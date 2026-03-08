@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { AnimatePresence } from "motion/react";
 import { Menu } from "./menu";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { motion } from "motion/react";
 import { textSlide } from "../../../animations/sections/navigation.animations";
 import { RiArrowDownSFill } from "react-icons/ri";
@@ -16,11 +16,11 @@ const Nav = () => {
   const [menu, setMenu] = useState(false);
   const [hover, setHover] = useState(false);
   const router = useRouter();
-
+  const pathname = usePathname();
   return (
     <>
       <nav className="fixed top-0 right-0 px-10 pt-10 w-full flex items-center justify-between z-100 mix-blend-exclusion max-ds:px-8 max-lg:px-5 max-lg:pt-5">
-        {router.pathname === "/" ? (
+        {pathname === "/" ? (
           <div></div>
         ) : (
           <button

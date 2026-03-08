@@ -1,3 +1,4 @@
+"use client";
 import { useInView } from "react-intersection-observer";
 import { motion } from "motion/react";
 import Button from "../ui/button";

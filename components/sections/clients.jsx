@@ -1,24 +1,9 @@
-import { motion, useScroll, useTransform } from "motion/react";
+"use client";
+
+import { motion } from "motion/react";
 import { useInView } from "react-intersection-observer";
 import { clients } from "@/data/clients.data";
 import { useRef, useState } from "react";
-
-const card = {
-  initial: ({ customY }) => ({
-    opacity: 0,
-    y: customY,
-  }),
-  animate: ({ delay }) => ({
-    opacity: 1,
-    y: 0,
-
-    transition: {
-      duration: 0.9,
-      ease: [0.76, 0, 0.24, 1],
-      delay,
-    },
-  }),
-};
 
 const Clients = () => {
   const container = useRef(null);

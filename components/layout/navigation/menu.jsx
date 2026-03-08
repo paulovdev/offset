@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { FaLink } from "react-icons/fa6";
 
@@ -20,6 +20,7 @@ import { IoClose } from "react-icons/io5";
 
 export const Menu = ({ setMenu }) => {
   const router = useRouter();
+  const pathname = usePathname();
   const [openDropdown, setOpenDropdown] = useState(null);
 
   return (
@@ -54,7 +55,7 @@ export const Menu = ({ setMenu }) => {
           <div className="relative p-10 pt-20 size-full flex flex-col items-start justify-between max-lg:px-5">
             <div className="w-full flex flex-col items-start">
               {navigation.map((item, i) => {
-                const isActive = router.pathname === item.href;
+                const isActive = pathname === item.href;
                 const isOpen = openDropdown === item.label;
 
                 return (

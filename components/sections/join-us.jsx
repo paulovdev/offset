@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
-import ExportedImage from "next-image-export-optimizer";
+import Image from "next/image";
 
 const JoinUs = () => {
   const container = useRef(null);
@@ -47,7 +47,7 @@ const JoinUs = () => {
             </motion.h1>
           </div>
           <div className="absolute inset-0 w-screen h-screen -z-10">
-            <ExportedImage
+            <Image
               src="/images/join.jpg"
               width={2000}
               height={2000}

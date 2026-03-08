@@ -1,11 +1,11 @@
+"use client";
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { IoArrowDownSharp } from "react-icons/io5";
 import { scale } from "../../animations/sections/hero.animations";
 import { textSlide } from "@/animations/shared/global-anim";
 import TextAnimated from "../ui/text-animated";
-
-import ExportedImage from "next-image-export-optimizer";
+import Image from "next/image";
 
 const PageHero = ({ title = [], subTitle, src }) => {
   const container = useRef(null);
@@ -32,7 +32,7 @@ const PageHero = ({ title = [], subTitle, src }) => {
             animate="animate"
             custom={0}
           >
-            <ExportedImage
+            <Image
               src={src}
               width={2000}
               height={2000}

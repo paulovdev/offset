@@ -1,3 +1,19 @@
+import img01 from "@/public/assets/images/approach/img-01.jpg";
+import img02 from "@/public/assets/images/approach/img-02.jpg";
+import img03 from "@/public/assets/images/approach/img-03.jpg";
+
+import team01 from "@/public/assets/images/team/img-01.jpg";
+import team02 from "@/public/assets/images/team/img-02.jpg";
+import team03 from "@/public/assets/images/team/img-03.jpg";
+import team04 from "@/public/assets/images/team/img-04.jpg";
+import team05 from "@/public/assets/images/team/img-05.jpg";
+import team06 from "@/public/assets/images/team/img-06.jpg";
+import team07 from "@/public/assets/images/team/img-07.jpg";
+import team08 from "@/public/assets/images/team/img-08.jpg";
+import team09 from "@/public/assets/images/team/img-09.jpg";
+import team10 from "@/public/assets/images/team/img-10.jpg";
+import team11 from "@/public/assets/images/team/img-11.jpg";
+
 export const awards = [
   { title: "FWA — SOTD", subTitle: "(x9)" },
   { title: "FWA — SOTM", subTitle: "(x2)" },
@@ -34,88 +50,34 @@ export const approach = [
       "We dare to do big things, create big ideas, make big leaps, and take big risks.",
     ],
     number: "01",
-    numberSmall: "—",
-    src: "/images/approach/img-01.jpg",
-    alt: "Futuristic streetwear portrait in low lighting",
+    src: img01,
   },
   {
     style: "— We Before Me",
-    description: [
-      "We work as a team to get the best from each other. No one can move a mountain alone.",
-    ],
+    description: ["We work as a team to get the best from each other."],
     number: "02",
-    numberSmall: "—",
-    src: "/images/approach/img-02.jpg",
-    alt: "Dark fashion video with minimalist composition",
+    src: img02,
   },
   {
     style: "— Great Not Good",
-    description: [
-      "We are obsessed with excellence and refuse to accept mediocrity or good enough.",
-    ],
+    description: ["We are obsessed with excellence and refuse mediocrity."],
     number: "03",
-    numberSmall: "—",
-    src: "/videos/approach/video-04.mp4",
-    alt: "Minimal human figure in a neutral-toned studio",
+    src: img03,
   },
 ];
 
 export const team = [
-  {
-    src: "/images/team/img-01.jpg",
-    name: "Luna Carvalho",
-    role: "Creative Director",
-  },
-  {
-    src: "/images/team/img-02.jpg",
-    name: "Sofia Almeida",
-    role: "Fashion Film Director",
-  },
-  {
-    src: "/images/team/img-03.jpg",
-    name: "Mateo Ribeiro",
-    role: "Visual Research & Styling",
-  },
-  {
-    src: "/images/team/img-04.jpg",
-    name: "Enzo Martins",
-    role: "Director of Photography",
-  },
-  {
-    src: "/images/team/img-05.jpg",
-    name: "Luna Carvalho",
-    role: "Creative Director",
-  },
-  {
-    src: "/images/team/img-06.jpg",
-    name: "Sofia Almeida",
-    role: "Fashion Film Director",
-  },
-  {
-    src: "/images/team/img-07.jpg",
-    name: "Mateo Ribeiro",
-    role: "Visual Research & Styling",
-  },
-  {
-    src: "/images/team/img-08.jpg",
-    name: "Enzo Martins",
-    role: "Director of Photography",
-  },
-  {
-    src: "/images/team/img-09.jpg",
-    name: "Luna Carvalho",
-    role: "Creative Director",
-  },
-  {
-    src: "/images/team/img-10.jpg",
-    name: "Sofia Almeida",
-    role: "Fashion Film Director",
-  },
-  {
-    src: "/images/team/img-11.jpg",
-    name: "Mateo Ribeiro",
-    role: "Visual Research & Styling",
-  },
+  { src: team01, name: "Luna Carvalho", role: "Creative Director" },
+  { src: team02, name: "Sofia Almeida", role: "Fashion Film Director" },
+  { src: team03, name: "Mateo Ribeiro", role: "Visual Research & Styling" },
+  { src: team04, name: "Enzo Martins", role: "Director of Photography" },
+  { src: team05, name: "Luna Carvalho", role: "Creative Director" },
+  { src: team06, name: "Sofia Almeida", role: "Fashion Film Director" },
+  { src: team07, name: "Mateo Ribeiro", role: "Visual Research & Styling" },
+  { src: team08, name: "Enzo Martins", role: "Director of Photography" },
+  { src: team09, name: "Luna Carvalho", role: "Creative Director" },
+  { src: team10, name: "Sofia Almeida", role: "Fashion Film Director" },
+  { src: team11, name: "Mateo Ribeiro", role: "Visual Research & Styling" },
 ];
 
 export const manifestoPhrases = [

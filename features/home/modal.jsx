@@ -8,6 +8,7 @@ import { modalContainer } from "@/animations/sections/home.animations";
 import { textSlide2 } from "@/animations/shared/global-anim";
 import { useInView } from "react-intersection-observer";
 import Image from "next/image";
+import ImageComponent from "@/components/ui/image";
 
 const Modal = ({ setModal, modal, activeItem }) => {
   const scrollRef = useRef(null);
@@ -171,34 +172,9 @@ const Modal = ({ setModal, modal, activeItem }) => {
 export default Modal;
 
 const LabImageBlock = ({ block, modal }) => {
-  const image = block?.image?.asset;
-  const vimeoUrl = block?.vimeoUrl;
-  console.log(vimeoUrl);
   return (
-    <motion.figure className="relative w-full h-[50vh] overflow-hidden">
-      {image?.url && !vimeoUrl && (
-        <Image
-          src={image.url}
-          alt=""
-          fill
-          sizes="100vw"
-          placeholder={image.metadata?.lqip ? "blur" : "empty"}
-          blurDataURL={image.metadata?.lqip}
-          className="object-cover"
-        />
-      )}
-
-      {vimeoUrl && (
-        <div className="relative size-full pointer-events-none">
-          <iframe
-            src={`https://player.vimeo.com/video/${vimeoUrl.split("/").pop()}?autoplay=1&muted=1&loop=1&background=1`}
-            className="absolute top-0 left-0 size-full scale-115"
-            frameBorder="0"
-            allow="autoplay; fullscreen"
-            allowFullScreen
-          />
-        </div>
-      )}
+    <motion.figure className="relative mb-4 w-full h-[40vh] overflow-hidden max-lg:h-[35vh]">
+      <ImageComponent image={block.image} className="size-full object-cover" />
 
       {block.overlayText && (
         <motion.p
@@ -219,7 +195,7 @@ const LabImageBlock = ({ block, modal }) => {
 };
 
 const LabTextBlock = ({ block, modal }) => (
-  <div className="mt-10 mb-25 flex items-start max-md:flex-col">
+  <div className="mt-10 mb-20 flex items-start max-md:flex-col">
     <div className="flex-1 max-md:mb-6">
       <div className="overflow-hidden h-fit">
         <motion.p
@@ -234,7 +210,7 @@ const LabTextBlock = ({ block, modal }) => (
       </div>
     </div>
 
-    <div className="flex-2">
+    <div className="flex-[1.25]">
       <TextAnimated
         phrases={[block.text]}
         variants={textSlide2}

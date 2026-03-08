@@ -6,6 +6,7 @@ import { AnimatePresence, motion, useAnimate } from "motion/react";
 import Modal from "./modal";
 import Magnetic from "@/hooks/useMagnetic";
 import Image from "next/image";
+import ImageComponent from "@/components/ui/image";
 
 const textSlideNoI = {
   initial: {
@@ -193,33 +194,11 @@ const Hero = ({ labs }) => {
   return (
     <>
       <div className="relative w-full h-screen select-none" ref={scope}>
-        <div className="img-a absolute inset-0 will-change-[clip-path] overflow-hidden -z-10 pointer-events-none">
-          <figure className="relative size-full overflow-hidden">
-            {activeLab.heroMedia?.vimeoUrl && (
-              <div className="relative size-full pointer-events-none">
-                <iframe
-                  src={`https://player.vimeo.com/video/${activeLab.heroMedia.vimeoUrl.split("/").pop()}?autoplay=1&muted=1&loop=1&background=1`}
-                  className="absolute top-0 left-0 size-full scale-115"
-                  frameBorder="0"
-                  allow="autoplay; fullscreen"
-                  allowFullScreen
-                />
-              </div>
-            )}
-
-            {!activeLab.heroMedia?.vimeoUrl &&
-              activeLab.heroMedia?.image?.asset?.url && (
-                <Image
-                  src={activeLab.heroMedia.image.asset.url}
-                  alt=""
-                  fill
-                  priority
-                  placeholder="blur"
-                  blurDataURL={activeLab.heroMedia.image.asset.metadata?.lqip}
-                  className="object-cover brightness-75"
-                />
-              )}
-          </figure>
+        <div className="img-a absolute inset-0 w-screen h-screen -z-10 overflow-hidden pointer-events-none">
+          <ImageComponent
+            image={activeLab.heroMedia.image}
+            className="size-full object-cover brightness-60"
+          />
         </div>
 
         {!isPreloading && (
@@ -370,7 +349,7 @@ const Hero = ({ labs }) => {
                               className="px-4 py-3 w-60 inline-block bg-s/5 backdrop-blur-sm border-s/15 border-[1px] group cursor-pointer max-md:w-full"
                             >
                               <div className="w-full flex items-end justify-between">
-                                <div className="relative h-[15px] overflow-hidden max-md:h-[12px]">
+                                <div className="relative h-[14px] overflow-hidden max-md:h-[12px]">
                                   <motion.div
                                     variants={textOverlap}
                                     initial="initial"
@@ -462,7 +441,7 @@ const Hero = ({ labs }) => {
                   }}
                   exit={{
                     opacity: 0,
-                    y: Math.random() > 0.5 ? "-10%" : "10%",
+                    y: Math.random() > 0.5 ? "-15%" : "15%",
                     filter: "blur(4px)",
                     transition: {
                       duration: 0.5,
@@ -470,7 +449,7 @@ const Hero = ({ labs }) => {
                     },
                   }}
                   style={{
-                    top: `${Math.random() * 100}%`,
+                    top: `${Math.random() * 75}%`,
                     left: `${Math.random() * 100}%`,
                     opacity: Math.random() * 0.25 + 0.25,
                   }}

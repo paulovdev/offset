@@ -1,3 +1,4 @@
+"use client";
 import { useRef, useState, useEffect, useCallback } from "react";
 import {
   IoMdPause,
@@ -11,7 +12,8 @@ import { useIsMobile } from "@/hooks/useIsMobile";
 import { useInView } from "react-intersection-observer";
 import { IoClose } from "react-icons/io5";
 import { textOverlap } from "@/animations/shared/global-anim";
-import ExportedImage from "next-image-export-optimizer";
+import reelCover from "@/public/assets/images/reel-cover.jpg";
+import Image from "next/image";
 
 const Reel = () => {
   const videoRef = useRef(null);
@@ -32,12 +34,7 @@ const Reel = () => {
     offset: ["start start", "center end"],
   });
 
-  const clipPathScroll = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ["inset(0% 0% 0% 0%)", "inset(15% 15% 15% 15%)"],
-  );
-
+  const y2 = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
   const textY = useTransform(scrollYProgress, [0, 2.5], [0, -600]);
 
   const { x, y } = useMousePosition2();
@@ -90,22 +87,28 @@ const Reel = () => {
 
   return (
     <>
-      <motion.div
+      <div
         ref={container}
-        style={{ clipPath: clipPathScroll }}
-        className="relative w-screen h-dvh flex items-center justify-center bg-p will-change-[clip-path]"
+        className="relative flex items-center justify-center h-screen overflow-hidden"
+        style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
         onClick={() => setVideoOpen(true)}
       >
-        <div className="absolute inset-0 size-full -z-10" ref={ref}>
-          <ExportedImage
-            src="/images/reel.jpg"
-            width={2000}
-            height={2000}
-            alt=""
-            className="size-full object-cover brightness-75"
-          />
+        <div ref={ref} className="fixed top-[-10vh] left-0 w-full h-[120vh]">
+          <motion.figure
+            style={{ y: y2 }}
+            className="absolute inset-0 size-full -z-10"
+          >
+            <Image
+              src={reelCover}
+              alt="Reel cover"
+              fill
+              placeholder="blur"
+              className="size-full object-cover brightness-75"
+            />
+          </motion.figure>
         </div>
-        <div className="overflow-hidden h-fit cursor-pointer z-50">
+
+        <div className="absolute overflow-hidden h-fit cursor-pointer z-150">
           <motion.h3
             className="relative text-s text-[62px] tracking-[-0.03em] leading-none max-ds:text-[52px] max-lg:text-[48px] max-md:text-[32px] group will-change-transform"
             initial={false}
@@ -122,7 +125,7 @@ const Reel = () => {
             <span className="absolute left-0 bottom-px h-[3px] w-full origin-left scale-x-100 bg-s transition-transform duration-300 ease-out group-hover:scale-x-0 max-lg:h-0.5" />
           </motion.h3>
         </div>
-        <div className="absolute inset-0 flex items-end justify-center p-10 max-ds:p-8 max-lg:p-5 max-md:p-2">
+        <div className="absolute size-full flex items-end justify-center z-50 p-10 max-ds:p-8 max-lg:p-5 max-md:p-2">
           <div className="h-fit overflow-hidden">
             <motion.p
               className="pointer-events-auto relative text-s font-general font-normal text-[14px] tracking-[-0.05em] uppercase max-md:text-[12px] max-md:-top-1"
@@ -132,7 +135,7 @@ const Reel = () => {
             </motion.p>
           </div>
         </div>
-      </motion.div>
+      </div>
 
       <AnimatePresence mode="wait">
         {videoOpen && (

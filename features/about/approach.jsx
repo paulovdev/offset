@@ -1,0 +1,135 @@
+"use client";
+import { useInView } from "react-intersection-observer";
+import { motion } from "motion/react";
+import { useState } from "react";
+import { textSlide } from "@/animations/shared/global-anim";
+import TextAnimated from "@/components/ui/text-animated";
+import { useIsMobile } from "@/hooks/useIsMobile";
+import { approach } from "@/data/about.data";
+import Image from "next/image";
+
+const textSlideNoI = {
+  initial: {
+    y: "100%",
+    transition: {
+      duration: 0.5,
+      ease: [0.33, 1, 0.68, 1],
+      delay: 0.3,
+    },
+  },
+  animate: (custom) => ({
+    y: "0",
+    transition: {
+      duration: 0.5,
+      ease: [0.33, 1, 0.68, 1],
+      delay: custom,
+    },
+  }),
+  exit: {
+    y: "-100%",
+    transition: {
+      duration: 0.5,
+      ease: [0.33, 1, 0.68, 1],
+      delay: 0.25,
+    },
+  },
+};
+
+const CardGrid = ({ approach, index, activeIndex, setActiveIndex }) => {
+  const active = activeIndex === index;
+  const isMobile = useIsMobile();
+  const { ref, inView } = useInView({
+    threshold: 0.25,
+    triggerOnce: true,
+  });
+
+  return (
+    <motion.div
+      ref={ref}
+      className="relative group perspective-midrange flex-[1_1_0%] min-w-0 max-lg:w-full"
+      onMouseEnter={() => setActiveIndex(index)}
+      onMouseLeave={() => setActiveIndex(2)}
+      animate={{ flexGrow: active ? 2.5 : 1.25 }}
+      transition={{
+        duration: 1,
+        ease: [0.76, 0, 0.24, 1],
+      }}
+    >
+      <motion.figure
+        className="relative w-full h-[75vh] overflow-hidden max-lg:h-[60vh] will-change-transform"
+        initial={{ y: !isMobile && 250 }}
+        animate={{ y: inView && 0 }}
+        transition={{
+          duration: 0.75,
+          ease: [0.76, 0, 0.24, 1],
+          delay: index * 0.075,
+        }}
+      >
+        <Image
+          src={approach.src}
+          alt=""
+          fill
+          placeholder="blur"
+          className="object-cover brightness-75"
+        />
+
+        <div className="absolute inset-0 p-5 flex flex-col justify-between">
+          <div className="h-fit overflow-hidden">
+            <motion.p
+              className="text-s text-center font-general font-medium text-[14px] tracking-[-0.03em] leading-[1.2] uppercase max-md:text-[12px]"
+              variants={textSlide}
+              initial="initial"
+              animate={inView ? "animate" : "initial"}
+            >
+              {approach.style}
+            </motion.p>
+          </div>
+
+          <div className="h-fit overflow-hidden">
+            <motion.p
+              className="relative text-center text-s text-[128px] tracking-[-0.03em] leading-none max-ds:text-[92px] max-lg:text-[104px] max-md:text-[92px]"
+              variants={textSlideNoI}
+              initial="initial"
+              animate={active ? "animate" : "initial"}
+            >
+              {approach.number}
+            </motion.p>
+          </div>
+
+          <TextAnimated
+            phrases={approach.description}
+            variants={textSlideNoI}
+            animate={inView && active}
+            className="max-w-100 mx-auto min-h-20 text-s text-center font-general font-medium text-[14px] tracking-[-0.03em] leading-[1.2] uppercase max-md:text-[12px]"
+            lineClassName="overflow-hidden"
+            wordClassName="mr-1.5"
+            wordDelay={0.025}
+            lineDelay={0.015}
+          />
+        </div>
+      </motion.figure>
+    </motion.div>
+  );
+};
+
+const Approach = () => {
+  const [activeIndex, setActiveIndex] = useState(2);
+
+  return (
+    <section className="relative px-10 w-screen h-full overflow-hidden max-ds:px-8 max-lg:px-5 max-md:px-2">
+      <div className="w-full flex items-center flex-wrap gap-2 max-lg:flex-col snap-mandatory overflow-x-scroll ">
+        {approach.map((approach, i) => (
+          <CardGrid
+            key={i}
+            approach={approach}
+            index={i}
+            activeIndex={activeIndex}
+            setActiveIndex={setActiveIndex}
+          />
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default Approach;
